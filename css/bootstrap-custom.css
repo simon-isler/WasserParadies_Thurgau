@@ -1,8 +1,9 @@
-#map {
-    width: 90%;
-    height: 75%;
+#mapid {
     margin: 0.25% auto;
     border: 1px #bbbbbb solid;
+    width: 80%;
+    height: 40%;
+    margin-top: 10%;
 }
 
 .active {
