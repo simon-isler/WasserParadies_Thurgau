@@ -32,7 +32,7 @@ html, body {
 }
 
 #map {
-    height: 800px;
+    height: 100%;
 }
 
 .d3-tip {
@@ -60,4 +60,8 @@ html, body {
     margin: -1px 0 0 0;
     top: 100%;
     left: 0;
+}
+
+.bg-dark {
+    background-color: green !important;
 }
