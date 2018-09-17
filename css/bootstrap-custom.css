@@ -58,14 +58,13 @@ html, body {
 
 #sidebar-wrapper {
     float: left;
-    background-color: lightgray;
+    background-color: white;
     height: 100%;
     width: 22.5%;
+    padding-top: 1%;
 }
 
-#sidebar-text {
-    padding-top: 20%;
-    padding-left: 5%;
+.tab-content {
+    padding-left: 3%;
 }
-
 
