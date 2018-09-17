@@ -39,23 +39,46 @@
 <!-- sidebar -->
 <div id="sidebar-wrapper">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
+        <li class="nav-item" style="width: 50%; text-align: center;">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#suchkriterien" role="tab" aria-controls="suchkriterien" aria-selected="true">Suchkriterien</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="design" aria-selected="false">Design</a>
+        <li class="nav-item" style="width: 50%; text-align: center;">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#design" role="tab" aria-controls="design" aria-selected="false">Design</a>
         </li>
     </ul>
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="suchkriterien" role="tabpanel" aria-labelledby="suchkriterien-tab">
-
+            <p>Wählen Sie aus wie Ihre Karte aussehen soll!</p>
         </div>
-        <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">...</div>
+        <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
+            <p>Wählen Sie aus wie Ihre Karte aussehen soll!</p>
+            <h5>Thurgau Karte</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radios" id="tgKarteStreets" value="option1" checked>
+                <label class="form-check-label" for="tgKarteStreets">
+                    Streets
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radios" id="tgKarteLight" value="option2">
+                <label class="form-check-label" for="tgKarteLight">
+                    Light
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radios" id="tgKarteSatellite" value="option3">
+                <label class="form-check-label" for="tgKarteSatellite">
+                    Satellite
+                </label>
+            </div>
+            <hr>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Begin page content -->
+<!-- Map -->
 <div id="mapid">
 </div>
 </body>
