@@ -6,7 +6,6 @@ var southWest = L.latLng(47.35248575, 8.54693941),
 
 //creating map
 var mymap = L.map('mapid', {
-
     maxBounds: mybounds,
     maxBoundsViscosity: 1.0,
 }).setView([47.603786, 9.055737], 11);
@@ -16,9 +15,10 @@ var mymap = L.map('mapid', {
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox.satellite',
+    id: 'mapbox.streets',
     maxZoom: 18,
     minZoom: 11,
+
     accessToken: 'pk.eyJ1IjoiamFub2JlMiIsImEiOiJjam00b3Vpa2wzZjNoM3BxbmJtams3Z2U0In0.ZOdhoX3gBfEJkGy0-w8Bwg'
 }).addTo(mymap);
 
