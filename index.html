@@ -51,7 +51,17 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="suchkriterien" role="tabpanel" aria-labelledby="suchkriterien-tab">
+            <p>Filtern Sie die Anzeige mit den folgenden Kriterien!</p>
+            <form>
+                <div class="form-group">
+                    <h5>Gewässername</h5>
+                    <input type="text" class="form-control" id="gewaesserName" placeholder="Suche Gewässername..." style="width: 90%;">
+                </div>
+                <hr>
+
+            </form>
         </div>
+
         <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
             <p>Wählen Sie aus wie Ihre Karte aussehen soll!</p>
             <h5>Thurgau Karte</h5>
@@ -77,14 +87,12 @@
         </div>
     </div>
 </div>
-</div>
 
 <!-- Map -->
 <div id="mapid"></div>
 </body>
 
 <!-- Files/Scripts -->
-<script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
