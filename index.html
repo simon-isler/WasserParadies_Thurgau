@@ -51,11 +51,52 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="suchkriterien" role="tabpanel" aria-labelledby="suchkriterien-tab">
-            <p>Filtern Sie die Anzeige mit den folgenden Kriterien!</p>
+            <p>Wählen Sie aus welche Daten Sie angezeigt haben wollen!</p>
             <form>
                 <div class="form-group">
-                    <h5>Gewässername</h5>
-                    <input type="text" class="form-control" id="gewaesserName" placeholder="Suche Gewässername..." style="width: 90%;">
+                    <h5>Anzeige Optionen</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="options" id="box1" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box1">
+                            Entwässerungsgraben
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value=""  name="options" id="box2" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box2">
+                            Fliessgewässer
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="options" id="box3" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box3">
+                            Hochwasserprofil Bodensee Untersee
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="options" id="box4" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box4">
+                            Gewässersystem
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="options" id="box5" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box5">
+                            Stehendes Gewässer
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="options" id="box6" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box6">
+                            Gewässerabschnitt
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="options" id="box7" onclick="ckChange(this)">
+                        <label class="form-check-label" for="box7">
+                            Gewässereinzugsgebiet
+                        </label>
+                    </div>
                 </div>
                 <hr>
 
@@ -94,6 +135,7 @@
 </body>
 
 <!-- Files/Scripts -->
+<script src="js/custom.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -105,7 +147,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-<script src="map/js/app.js"></script>
+<script src="js/map/js/app.js"></script>
 </html>
 
 
