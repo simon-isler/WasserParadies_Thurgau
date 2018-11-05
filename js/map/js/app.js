@@ -4,6 +4,7 @@ var southWest = L.latLng(47.35248575, 8.54693941),
     northEast = L.latLng(47.72887099, 9.49451021),
     mybounds = L.latLngBounds(southWest, northEast);
 
+
 //creating map
 var mymap = L.map('mapid', {
     maxBounds: mybounds,
@@ -31,6 +32,22 @@ function changeMapStyle(mapName) {
 }
 
 
+function dataLayer(){
+
+    var tiles = L.TileLayer.WMS("https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities", {
+        layers: 'Gewaesserlauf',
+        'transparent': true
+    });
+    tiles.addTo(mymap);
+
+    /*
+    L.tileLayer.wms('https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?',{
+        //accessKey: 'YoW2syIQ4xe0ccJA',
+        layers: 'Gewaesserlauf'
+    });*/
+}
+
+
 //Add Event Listener for radio buttons
 document.getElementById("tgKarteStreets").addEventListener("click", function () {
     changeMapStyle('mapbox.streets');
@@ -44,14 +61,4 @@ document.getElementById("tgKarteSatellite").addEventListener("click", function (
 
 //Setup of map
 changeMapStyle('mapbox.light');
-
-
-//Add data to map
-function addDataToMap(data) {
-    var dataLayer = L.geoJson(data);
-    dataLayer.addTo(mymap);
-}
-
-$.getJSON("json/package_show.json", function (data) {
-    addDataToMap(data, map);
-});
+dataLayer();

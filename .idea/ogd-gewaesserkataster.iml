@@ -7,5 +7,6 @@
     <orderEntry type="library" name="leaflet" level="application" />
     <orderEntry type="library" name="jquery-1.11.3" level="application" />
     <orderEntry type="library" name="jquery-3.3.1.slim" level="application" />
+    <orderEntry type="library" name="map" level="application" />
   </component>
 </module>
