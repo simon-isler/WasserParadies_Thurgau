@@ -1,4 +1,4 @@
-﻿c/**/(function() {
+﻿/**/(function() {
 
 'use strict';
 

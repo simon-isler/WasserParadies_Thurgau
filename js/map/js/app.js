@@ -1,10 +1,3 @@
-//restrict view of map
-
-var southWest = L.latLng(47.35248575, 8.54693941),
-    northEast = L.latLng(47.72887099, 9.49451021),
-    mybounds = L.latLngBounds(southWest, northEast);
-
-
 //creating map
 var mymap = L.map('mapid', {
     maxBounds: mybounds,
@@ -13,11 +6,16 @@ var mymap = L.map('mapid', {
     minZoom: 11,
 }).setView([47.603786, 9.055737], 11);
 
+//restrict view of map
+var southWest = L.latLng(47.35248575, 8.54693941),
+    northEast = L.latLng(47.72887099, 9.49451021),
+    mybounds = L.latLngBounds(southWest, northEast);
+
 //Show scale meter on bottom left corner
 L.control.scale().addTo(mymap);
 
+// Chane map style
 function changeMapStyle(mapName) {
-
     //Remove every layer on the map
     mymap.eachLayer(function (layer) {
         mymap.removeLayer(layer);
@@ -31,22 +29,18 @@ function changeMapStyle(mapName) {
     }).addTo(mymap);
 }
 
-
+// Add data
 function dataLayer(){
+    // WMS
+    var wmsLayer = L.tileLayer.wms('https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA', {
+        layers: 'Gewaesserkataster Gewaesser',
+    }).addTo(mymap);
 
-    var tiles = L.TileLayer.WMS("https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities", {
-        layers: 'Gewaesserlauf',
-        'transparent': true
-    });
-    tiles.addTo(mymap);
+    // Entwässerungsgraben
+    if (document.getElementById('entwaesserungsgraben').checked) {
 
-    /*
-    L.tileLayer.wms('https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?',{
-        //accessKey: 'YoW2syIQ4xe0ccJA',
-        layers: 'Gewaesserlauf'
-    });*/
+    }
 }
-
 
 //Add Event Listener for radio buttons
 document.getElementById("tgKarteStreets").addEventListener("click", function () {
@@ -59,6 +53,6 @@ document.getElementById("tgKarteSatellite").addEventListener("click", function (
     changeMapStyle('mapbox.satellite');
 });
 
-//Setup of map
+// execute
 changeMapStyle('mapbox.light');
 dataLayer();
