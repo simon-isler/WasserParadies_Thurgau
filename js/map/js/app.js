@@ -4,6 +4,7 @@ var mymap = L.map('mapid', {
     maxBoundsViscosity: 1.0,
     maxZoom: 18,
     minZoom: 11,
+    transparent: true
 }).setView([47.603786, 9.055737], 11);
 
 //restrict view of map
@@ -31,15 +32,7 @@ function changeMapStyle(mapName) {
 
 // Add data
 function dataLayer(){
-    // WMS
-    var wmsLayer = L.tileLayer.wms('https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA', {
-        layers: 'Gewaesserkataster Gewaesser',
-    }).addTo(mymap);
-
-    // Entwässerungsgraben
-    if (document.getElementById('entwaesserungsgraben').checked) {
-
-    }
+    
 }
 
 //Add Event Listener for radio buttons
