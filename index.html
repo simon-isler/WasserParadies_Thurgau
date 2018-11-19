@@ -27,113 +27,112 @@
             crossorigin=""></script>
 </head>
 
-<header>
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Wasserparadies Thurgau</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-</header>
-
 <body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Wasserparadies Thurgau</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
 <!-- sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" style="width: 50%; text-align: center;">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#suchkriterien" role="tab"
-               aria-controls="suchkriterien" aria-selected="true">Suchkriterien</a>
-        </li>
-        <li class="nav-item" style="width: 50%; text-align: center;">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#design" role="tab" aria-controls="design"
-               aria-selected="false">Design</a>
-        </li>
-    </ul>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" style="width: 50%; text-align: center;">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#suchkriterien" role="tab"
+                   aria-controls="suchkriterien" aria-selected="true">Suchkriterien</a>
+            </li>
+            <li class="nav-item" style="width: 50%; text-align: center;">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#design" role="tab" aria-controls="design"
+                   aria-selected="false">Design</a>
+            </li>
+        </ul>
 
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="suchkriterien" role="tabpanel" aria-labelledby="suchkriterien-tab">
-            <p>Wählen Sie aus welche Daten Sie angezeigt haben wollen!</p>
-            <hr>
-            <form>
-                <div class="form-group">
-                    <h5>Anzeige Optionen</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="entwaesserungsgraben" onclick="ckChange(this)">
-                        <label class="form-check-label" for="entwaesserungsgraben">
-                            Entwässerungsgraben
-                        </label>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="suchkriterien" role="tabpanel" aria-labelledby="suchkriterien-tab">
+                <p>Wählen Sie aus welche Daten Sie angezeigt haben wollen!</p>
+                <hr>
+                <form>
+                    <div class="form-group">
+                        <h5>Anzeige Optionen</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="options" id="entwaesserungsgraben" onclick="ckChange(this)">
+                            <label class="form-check-label" for="entwaesserungsgraben">
+                                Entwässerungsgraben
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""  name="options" id="fliessgewaesser" onclick="ckChange(this)">
+                            <label class="form-check-label" for="fliessgewaesser">
+                                Fliessgewässer
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="options" id="bodensee" onclick="ckChange(this)">
+                            <label class="form-check-label" for="bodensee">
+                                Hochwasserprofil Bodensee Untersee
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="options" id="gewaessersystem" onclick="ckChange(this)">
+                            <label class="form-check-label" for="gewaessersystem">
+                                Gewässersystem
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="options" id="stehendesGewaesser" onclick="ckChange(this)">
+                            <label class="form-check-label" for="stehendesGewaesser">
+                                Stehendes Gewässer
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="options" id="gewaesserabschnitt" onclick="ckChange(this)">
+                            <label class="form-check-label" for="gewaesserabschnitt">
+                                Gewässerabschnitt
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="options" id="gewaessereinzugsgebiet" onclick="ckChange(this)">
+                            <label class="form-check-label" for="gewaessereinzugsgebiet">
+                                Gewässereinzugsgebiet
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value=""  name="options" id="fliessgewaesser" onclick="ckChange(this)">
-                        <label class="form-check-label" for="fliessgewaesser">
-                            Fliessgewässer
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="bodensee" onclick="ckChange(this)">
-                        <label class="form-check-label" for="bodensee">
-                            Hochwasserprofil Bodensee Untersee
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="gewaessersystem" onclick="ckChange(this)">
-                        <label class="form-check-label" for="gewaessersystem">
-                            Gewässersystem
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="stehendesGewaesser" onclick="ckChange(this)">
-                        <label class="form-check-label" for="stehendesGewaesser">
-                            Stehendes Gewässer
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="gewaesserabschnitt" onclick="ckChange(this)">
-                        <label class="form-check-label" for="gewaesserabschnitt">
-                            Gewässerabschnitt
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="gewaessereinzugsgebiet" onclick="ckChange(this)">
-                        <label class="form-check-label" for="gewaessereinzugsgebiet">
-                            Gewässereinzugsgebiet
-                        </label>
-                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
+                <p>Wählen Sie aus wie Ihre Karte aussehen soll!</p>
+                <hr>
+                <h5>Thurgau Karte</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radios" id="tgKarteStreets" value="option1">
+                    <label class="form-check-label" for="tgKarteStreets">
+                        Streets
+                    </label>
                 </div>
-            </form>
-        </div>
-
-        <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
-            <p>Wählen Sie aus wie Ihre Karte aussehen soll!</p>
-            <hr>
-            <h5>Thurgau Karte</h5>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radios" id="tgKarteStreets" value="option1">
-                <label class="form-check-label" for="tgKarteStreets">
-                    Streets
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radios" id="tgKarteLight" value="option2" checked>
-                <label class="form-check-label" for="tgKarteLight">
-                    Light
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radios" id="tgKarteSatellite" value="option3" >
-                <label class="form-check-label" for="tgKarteSatellite">
-                    Satellite
-                </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radios" id="tgKarteLight" value="option2" checked>
+                    <label class="form-check-label" for="tgKarteLight">
+                        Light
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radios" id="tgKarteSatellite" value="option3" >
+                    <label class="form-check-label" for="tgKarteSatellite">
+                        Satellite
+                    </label>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Map -->
-<div id="mapid">
-</div>
+<div id="mapid"></div>
+
 </body>
 
 <!-- Files/Scripts -->
