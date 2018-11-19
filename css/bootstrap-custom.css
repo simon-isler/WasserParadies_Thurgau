@@ -58,6 +58,7 @@ path .active {
     float: left;
     background-color: white;
     width: 22.5%;
+    margin-top: 1%;
 }
 
 .tab-content {
