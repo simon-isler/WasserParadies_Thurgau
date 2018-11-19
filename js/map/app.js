@@ -5,7 +5,8 @@ var mymap = L.map('mapid', {
     maxZoom: 18,
     minZoom: 11,
     transparent: true,
-    zoomControl: false
+    zoomControl: false,
+    crs: L.CRS.EPSG2056
 }).setView([47.603786, 9.055737], 11);
 
 //restrict view of map
@@ -33,7 +34,7 @@ function changeMapStyle(mapName) {
 
 // Add data
 function dataLayer(){
-    
+
 }
 
 //Add Event Listener for radio buttons
