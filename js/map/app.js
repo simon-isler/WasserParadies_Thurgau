@@ -4,7 +4,8 @@ var mymap = L.map('mapid', {
     maxBoundsViscosity: 1.0,
     maxZoom: 18,
     minZoom: 11,
-    transparent: true
+    transparent: true,
+    zoomControl: false
 }).setView([47.603786, 9.055737], 11);
 
 //restrict view of map
