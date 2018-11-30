@@ -69,3 +69,9 @@ path .active {
 .form-check {
     margin-top: 2%;
 }
+
+#map {
+    width: 77.5%;
+    height: 90%;
+    float: right;
+}
