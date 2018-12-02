@@ -18,7 +18,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -30,14 +29,11 @@
             integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
             crossorigin=""></script>
 </head>
+
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark static-top bg-dark">
-        <a class="navbar-brand" href="#">Wasserparadies Thurgau</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
+    <h2 class="header-title">Wasserparadies Thurgau</h2>
+    <img alt="Logo Kanton Thurgau" src="https://www.tg.ch/public/upload/assets/20/logo-kanton-thurgau.svg" class="logo">
+    <div class="tg-horizont"></div>
 </header>
 
 <body>
@@ -62,49 +58,49 @@
                 <div class="form-group">
                     <h5>Anzeige Optionen</h5>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options"
+                        <input class="form-check-input" type="radio" value="" name="options"
                                id="entwaesserungsgraben" onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="entwaesserungsgraben">
                             Entwässerungsgraben
                         </label>
                     </div>
-                    <div class="<!--form-check-->">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="fliessgewaesser"
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="" name="options" id="fliessgewaesser"
                                onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="fliessgewaesser">
                             Fliessgewässer
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="Hochwasserprofil"
+                        <input class="form-check-input" type="radio" value="" name="options" id="Hochwasserprofil"
                                onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="Hochwasserprofil">
                             Hochwasserprofil Bodensee Untersee
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="gewaessersystem"
+                        <input class="form-check-input" type="radio" value="" name="options" id="gewaessersystem"
                                onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="gewaessersystem">
                             Gewässersystem
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="Stehendes_Gewaesser"
+                        <input class="form-check-input" type="radio" value="" name="options" id="Stehendes_Gewaesser"
                                onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="Stehendes_Gewaesser">
                             Stehendes Gewässer
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options" id="gewaesserabschnitt"
+                        <input class="form-check-input" type="radio" value="" name="options" id="gewaesserabschnitt"
                                onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="gewaesserabschnitt">
                             Gewässerabschnitt
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="options"
+                        <input class="form-check-input" type="radio" value="" name="options"
                                id="gewaessereinzugsgebiet" onclick="changeLayer(this, this.id)">
                         <label class="form-check-label" for="gewaessereinzugsgebiet">
                             Gewässereinzugsgebiet
@@ -140,13 +136,11 @@
     </div>
 </div>
 
-<div id="mapid"></div>
+<div id="map"></div>
 
 </body>
-
-<!-- Files/Scripts -->
+<!-- Custom files first, then jQuery, then Popper.js, then holder.js, then jquery.validate.js, then Bootstrap JS -->
 <script src="js/map/map.js"></script>
-<script src="js/custom.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -155,6 +149,8 @@
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>

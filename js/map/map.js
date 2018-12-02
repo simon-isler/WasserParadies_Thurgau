@@ -3,20 +3,30 @@ var dataLayerName = '';
 var wmsLayer = '';
 var maplayer = '';
 
-
 //restrict view of map
-var southWest = L.latLng(47.35248575, 8.54693941),
-    northEast = L.latLng(47.72887099, 9.49451021),
-    mybounds = L.latLngBounds(southWest, northEast);
+const topLeftCorner = L.latLng(47.7157, 8.6538);
+const bottomRightCorner = L.latLng(47.3730, 9.47);
+const maxBounds = L.latLngBounds(topLeftCorner, bottomRightCorner);
 
+var mymap = L.map('map', {
+    maxBounds: maxBounds,
+    maxZoom: 14,
+    minZoom: 11,
+    zoomControl: false,
+    attributionControl: false
+}).setView([47.54, 9.075], 11);
 
-var mymap = L.map('mapid', {
-    maxBounds: mybounds,
-    maxBoundsViscosity: 1.0,
-    maxZoom: 18,
-    minZoom: 3,
-    transparent: true
-}).setView([47.603786, 9.055737], 11);
+// Handle zooming/scrolling
+mymap.scrollWheelZoom.disable();
+
+// control that shows state info on hover
+var info = L.control({position: 'topleft'});
+
+// Add zoom control
+var zoom = L.control.zoom({
+    position: 'topright'
+});
+zoom.addTo(mymap);
 
 //Show scale meter on bottom left corner
 L.control.scale().addTo(mymap);
@@ -44,7 +54,6 @@ function changeMapStyle(name) {
 }
 
 function changeLayer(thisObject, thisId){
-
     //remove data layer
     if(wmsLayer !== '')
         mymap.removeLayer(wmsLayer);
@@ -64,11 +73,7 @@ function changeLayer(thisObject, thisId){
         identify: false,
         layers: dataLayerName
     }).addTo(mymap);
-
-    ckChange(thisObject);
-
 }
-
 
 //Add Event Listener for radio buttons
 document.getElementById("tgKarteStreets").addEventListener("click", function () {
