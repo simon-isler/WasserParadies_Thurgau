@@ -2,6 +2,7 @@ var mapname = 'mapbox.light';
 var dataLayerName = '';
 var wmsLayer = '';
 var maplayer = '';
+var legend = '';
 
 //restrict view of map
 const topLeftCorner = L.latLng(47.7157, 8.6538);
@@ -73,6 +74,21 @@ function changeLayer(thisObject, thisId){
         identify: false,
         layers: dataLayerName
     }).addTo(mymap);
+
+    // Legende
+    legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (mymap) {
+        var div = [];
+        div = L.DomUtil.create('div', 'info legend');
+        var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
+        div.innerHTML += '<h4>Legende</h4><br>' +
+            '<img src='+url+' alt="legend" width="200" height="150">';
+
+        return div;
+
+    };
+
+    legend.addTo(mymap);
 }
 
 //Add Event Listener for radio buttons
@@ -91,3 +107,4 @@ document.getElementById("tgKarteSatellite").addEventListener("click", function (
 
 // generate map
 changeMapStyle(mapname);
+
