@@ -36,7 +36,7 @@
     <div class="tg-horizont"></div>
 </header>
 
-<body>
+<body onload="changeLayer('entwaesserungsgraben', 'entwaesserungsgraben')">
 <!-- sidebar -->
 <div id="sidebar-wrapper">
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -59,9 +59,9 @@
                 <div class="form-group">
                     <h5>Datenauswahl</h5>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="" name="options"
+                        <input class="form-check-input" checked="" type="radio" value="" name="options"
                                id="entwaesserungsgraben" onclick="changeLayer(this, this.id)">
-                        <label class="form-check-label" for="entwaesserungsgraben">
+                        <label class="form-check-label active" for="entwaesserungsgraben">
                             Entwässerungsgraben
                         </label>
                     </div>

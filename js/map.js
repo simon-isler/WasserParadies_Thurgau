@@ -1,8 +1,9 @@
+// Globale Variablen
 var mapname = 'mapbox.light';
-var dataLayerName = '';
+var dataLayerName = 'entwaesserungsgraben';
 var wmsLayer = '';
 var maplayer = '';
-var legend = '';
+var legend = L.control({position: 'bottomright'});
 
 //restrict view of map
 const topLeftCorner = L.latLng(47.7157, 8.6538);
@@ -55,9 +56,10 @@ function changeMapStyle(name) {
 }
 
 function changeLayer(thisObject, thisId){
-    //remove data layer
+    //remove data layer & legend
     if(wmsLayer !== '')
         mymap.removeLayer(wmsLayer);
+        legend.remove(mymap);
 
     //check, if checkbox is checked or not, if it's checked then draw layer
     if(document.getElementById(thisId).checked)
@@ -76,18 +78,14 @@ function changeLayer(thisObject, thisId){
     }).addTo(mymap);
 
     // Legende
-    legend = L.control({position: 'bottomright'});
     legend.onAdd = function (mymap) {
-        var div = [];
-        div = L.DomUtil.create('div', 'info legend');
+        var div = L.DomUtil.create('div', 'info legend');
         var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
         div.innerHTML += '<h4>Legende</h4><br>' +
             '<img src='+url+' alt="legend" width="200" height="150">';
 
         return div;
-
     };
-
     legend.addTo(mymap);
 }
 
