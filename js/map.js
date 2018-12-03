@@ -111,10 +111,9 @@ function changeLayer(thisId) {
 //Add listener
 function addSpinner(layer) {
     layer.on('tileload', function () {
-        if(!runningSpinner) {
+        if(!layer.isLoading()) {
             spinnerMap.style.display = 'block';
             spinnerMap1.style.display = 'block';
-            runningSpinner = true;
         }
 
     });
@@ -122,7 +121,6 @@ function addSpinner(layer) {
         if(!layer.isLoading()) {
             spinnerMap.style.display = 'none';
             spinnerMap1.style.display = 'none';
-            runningSpinner = false;
         }
     });
 }
