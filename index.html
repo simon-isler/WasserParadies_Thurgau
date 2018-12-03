@@ -31,13 +31,12 @@
             crossorigin=""></script>
 </head>
 
+<body onload="changeLayer('entwaesserungsgraben')">
 <header>
     <h2 class="header-title">Wasserparadies Thurgau</h2>
     <img alt="Logo Kanton Thurgau" src="https://www.tg.ch/public/upload/assets/20/logo-kanton-thurgau.svg" class="logo">
     <div class="tg-horizont"></div>
 </header>
-
-<body onload="changeLayer('entwaesserungsgraben')">
 <!-- sidebar -->
 <div id="sidebar-wrapper">
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -109,8 +108,7 @@
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" id="keine" type="radio" value="" name="options"
-                               id="" onclick="changeLayer(this.id)">
+                        <input class="form-check-input" id="keine" type="radio" value="" name="options" onclick="changeLayer(this.id)">
                         <label class="form-check-label" for="keine">
                             Keine
                         </label>
@@ -183,7 +181,6 @@
 
 <div id="full"><div id="map"></div></div>
 
-</body>
 <!-- Custom files first, then jQuery, then Popper.js, then holder.js, then jquery.validate.js, then Bootstrap JS -->
 <script src="js/map.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -199,6 +196,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+</body>
 </html>
 
 
