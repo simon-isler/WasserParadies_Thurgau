@@ -55,7 +55,7 @@ function changeMapStyle(name) {
         wmsLayer.addTo(mymap);
 }
 
-function changeLayer(thisObject, thisId){
+function changeLayer(thisId){
     //remove data layer & legend
     if(wmsLayer !== '')
         mymap.removeLayer(wmsLayer);
@@ -78,11 +78,11 @@ function changeLayer(thisObject, thisId){
     }).addTo(mymap);
 
     // Legende
-    legend.onAdd = function (mymap) {
+    legend.onAdd = function () {
         var div = L.DomUtil.create('div', 'info legend');
         var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
         div.innerHTML += '<h4>Legende</h4><br>' +
-            '<img src='+url+' alt="legend" width="200" height="150">';
+            '<img src='+url+' alt="legend" class="img-fluid" style="width: 100%; display: block;">';
 
         return div;
     };
