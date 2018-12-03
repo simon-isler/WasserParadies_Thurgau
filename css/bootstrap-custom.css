@@ -3,6 +3,10 @@ html, body {
     margin: 0;
 }
 
+.container-fluid {
+    padding: 0;
+}
+
 .active {
     width: 100%;
 }

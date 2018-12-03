@@ -32,11 +32,13 @@
 </head>
 
 <body onload="changeLayer('entwaesserungsgraben')">
+<div class="container-fluid">
 <header>
     <h1 class="header-title">Wasserparadies Thurgau</h1>
     <img alt="Logo Kanton Thurgau" src="https://www.tg.ch/public/upload/assets/20/logo-kanton-thurgau.svg" class="logo">
     <div class="tg-horizont"></div>
 </header>
+
 <!-- sidebar -->
 <div id="sidebar-wrapper">
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -49,7 +51,6 @@
                aria-selected="false">Design</a>
         </li>
     </ul>
-
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="suchkriterien" role="tabpanel" aria-labelledby="suchkriterien-tab">
@@ -180,6 +181,8 @@
 </div>
 
 <div id="full"><div id="map"></div></div>
+
+</div>
 
 <!-- Custom files first, then jQuery, then Popper.js, then holder.js, then jquery.validate.js, then Bootstrap JS -->
 <script src="js/map.js"></script>
