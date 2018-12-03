@@ -1,3 +1,10 @@
+/*
+*   map.js
+*
+*   Datum: 01.12.2018
+*   Autor: Simon Isler, Jan Oberhänsli
+*/
+
 // Globale Variablen
 var mapname = 'mapbox.light';
 var dataLayerName = 'entwaesserungsgraben';
