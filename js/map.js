@@ -13,6 +13,7 @@ const topLeftCorner = L.latLng(47.7157, 8.6538);
 const bottomRightCorner = L.latLng(47.3730, 9.47);
 const maxBounds = L.latLngBounds(topLeftCorner, bottomRightCorner);
 
+// Init map
 var mymap = L.map('map', {
     maxBounds: maxBounds,
     maxZoom: 14,
@@ -30,8 +31,7 @@ var info = L.control({position: 'topleft'});
 // Add zoom control
 var zoom = L.control.zoom({
     position: 'topright'
-});
-zoom.addTo(mymap);
+}).zoom.addTo(mymap);
 
 //Show scale meter on bottom left corner
 L.control.scale().addTo(mymap);
@@ -39,8 +39,6 @@ L.control.scale().addTo(mymap);
 
 // Chane map style
 function changeMapStyle(name) {
-
-
     //Remove every layer on the map
     if (maplayer !== '')
         mymap.removeLayer(maplayer);
@@ -66,7 +64,6 @@ function changeMapStyle(name) {
 
 
 function changeLayer(thisId) {
-
     //remove data layer & legend
     if (wmsLayer !== '')
         mymap.removeLayer(wmsLayer);
@@ -95,7 +92,7 @@ function changeLayer(thisId) {
         // Legende
         //If legend shows only one item, then do not display
         if (dataLayerName === 'entwaesserungsgraben' || dataLayerName === 'fliessgewaesser' || dataLayerName === 'Stehendes_Gewaesser') { //Data with multiple items in legend
-            legend.onAdd = function (mymap) {
+            legend.onAdd = function () {
                 var div = L.DomUtil.create('div', 'info legend');
                 var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
                 div.innerHTML += '<h4>Legende</h4><br>' +
@@ -106,7 +103,6 @@ function changeLayer(thisId) {
         }
     }
 }
-
 
 //Add listener
 function addSpinner(layer) {
@@ -126,8 +122,6 @@ function addSpinner(layer) {
         }
     });
 }
-
-
 
 //Add Event Listener for radio buttons
 document.getElementById("tgKarteStreets").addEventListener("click", function () {
