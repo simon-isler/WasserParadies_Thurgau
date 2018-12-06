@@ -38,7 +38,8 @@ var info = L.control({position: 'topleft'});
 // Add zoom control
 var zoom = L.control.zoom({
     position: 'topright'
-}).zoom.addTo(mymap);
+});
+zoom.addTo(mymap);
 
 //Show scale meter on bottom left corner
 L.control.scale().addTo(mymap);
@@ -146,6 +147,3 @@ document.getElementById("tgKarteSatellite").addEventListener("click", function (
 
 // generate map
 changeMapStyle(mapname);
-
-
-
