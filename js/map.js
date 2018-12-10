@@ -30,12 +30,12 @@ var map = L.map('map', {
     attributionControl: false
 }).setView([47.54, 9.075], 11);
 
-// change map zoom according to screen width
+// change map zoom according to screen width & height
 function resizeMap() {
     if (width < 768 || height < 768) {
         // set the zoom level to 10
         map.setZoom(10);
-    } else if (width > 1599 || height > 1599) {
+    } else if (width > 1599 && height > 1300) {
         map.setZoom(12);
     }
     else {
@@ -45,8 +45,8 @@ function resizeMap() {
 }
 resizeMap();
 
-// change map zoom according to screen width if window gets smaller
-window.addEventListener('resize', function(event){
+// change map zoom according to screen width & height if window gets smaller
+window.addEventListener('resize', function(){
     // get the width of the screen after the resize event
     width = document.documentElement.clientWidth;
     height = document.documentElement.clientHeight;
