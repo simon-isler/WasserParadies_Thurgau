@@ -26,11 +26,30 @@ const maxBounds = L.latLngBounds(topLeftCorner, bottomRightCorner);
 // Init map
 var mymap = L.map('map', {
     maxBounds: maxBounds,
-    maxZoom: 17,
-    minZoom: 11,
+    maxZoom: 14,
+    minZoom: 8,
     zoomControl: false,
     attributionControl: false
 }).setView([47.54, 9.075], 11);
+
+// listen for screen resize events
+window.addEventListener('resize', function(event){
+    // get the width of the screen after the resize event
+    var width = document.documentElement.clientWidth;
+
+    // tablets are between 768 and 922 pixels wide
+    // phones are less than 768 pixels wide
+    if (width < 768) {
+        // set the zoom level to 10
+        mymap.setZoom(10);
+    } else if (width > 1599) {
+        mymap.setZoom(12);
+    }
+    else {
+        // set the zoom level to 8
+        mymap.setZoom(11);
+    }
+});
 
 // Map options
 mymap.scrollWheelZoom.disable(); // Handle zooming/scrolling
