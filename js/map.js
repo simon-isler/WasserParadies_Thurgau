@@ -1,8 +1,11 @@
 /*
 *   map.js
 *
+*   Beschreibung
+*
 *   Datum: 01.12.2018
 *   Autor: Simon Isler, Jan Oberhänsli
+*
 */
 
 // Globale Variablen
@@ -29,23 +32,21 @@ var mymap = L.map('map', {
     attributionControl: false
 }).setView([47.54, 9.075], 11);
 
-// Handle zooming/scrolling
-mymap.scrollWheelZoom.disable();
+// Map options
+mymap.scrollWheelZoom.disable(); // Handle zooming/scrolling
 
-// control that shows state info on hover
-var info = L.control({position: 'topleft'});
+var info = L.control({position: 'topleft'}); // control that shows state info on hover
 
-// Add zoom control
-var zoom = L.control.zoom({
+var zoom = L.control.zoom({ // Add zoom control
     position: 'topright'
-});
-zoom.addTo(mymap);
+}); zoom.addTo(mymap);
 
-//Show scale meter on bottom left corner
-L.control.scale().addTo(mymap);
+L.control.scale().addTo(mymap); //Show scale meter on bottom left corner
 
+var sidebar = L.control.sidebar({ // Sidebar
+    container: 'sidebar' }); sidebar.addTo(mymap);
 
-// Chane map style
+// Change map style
 function changeMapStyle(name) {
     //Remove every layer on the map
     if (maplayer !== '')
@@ -70,7 +71,7 @@ function changeMapStyle(name) {
     }
 }
 
-
+// Change layer
 function changeLayer(thisId) {
     //remove data layer & legend
     if (wmsLayer !== '')
@@ -104,7 +105,7 @@ function changeLayer(thisId) {
                 var div = L.DomUtil.create('div', 'info legend');
                 var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
                 div.innerHTML += '<h4>Legende</h4><br>' +
-                    '<img src=' + url + ' alt="legend" width="200" height="150">';
+                    '<img src=' + url + ' alt="legend" width="auto" height="auto">';
                 return div;
             };
             legend.addTo(mymap);
@@ -112,7 +113,7 @@ function changeLayer(thisId) {
     }
 }
 
-//Add listener
+// Add loading icon
 function addSpinner(layer) {
     layer.on('tileload', function () {
         if(!runningSpinner) {
@@ -131,7 +132,7 @@ function addSpinner(layer) {
     });
 }
 
-//Add Event Listener for radio buttons
+// Add Event Listener for radio buttons
 document.getElementById("tgKarteStreets").addEventListener("click", function () {
     mapname = 'mapbox.streets';
     changeMapStyle(mapname);
