@@ -8,11 +8,13 @@
 *
 */
 
-// Global variables
+// global variables
 var mapname = 'mapbox.light';
 var dataLayerName = 'entwaesserungsgraben';
 var wmsLayer = '';
 var maplayer = '';
+var width = document.documentElement.clientWidth;
+var height = document.documentElement.clientHeight;
 
 //restrict view of map
 const topLeftCorner = L.latLng(47.7157, 8.6538);
@@ -29,22 +31,26 @@ var map = L.map('map', {
 }).setView([47.54, 9.075], 11);
 
 // change map zoom according to screen width
-window.addEventListener('resize', function(event){
-    // get the width of the screen after the resize event
-    var width = document.documentElement.clientWidth;
-
-    // tablets are between 768 and 922 pixels wide
-    // phones are less than 768 pixels wide
-    if (width < 768) {
+function resizeMap() {
+    if (width < 768 || height < 768) {
         // set the zoom level to 10
         map.setZoom(10);
-    } else if (width > 1599) {
+    } else if (width > 1599 || height > 1599) {
         map.setZoom(12);
     }
     else {
         // set the zoom level to 8
         map.setZoom(11);
     }
+}
+resizeMap();
+
+// change map zoom according to screen width if window gets smaller
+window.addEventListener('resize', function(event){
+    // get the width of the screen after the resize event
+    width = document.documentElement.clientWidth;
+    height = document.documentElement.clientHeight;
+    resizeMap();
 });
 
 // Map options
@@ -139,7 +145,7 @@ function changeLayer(thisId) {
                 var div = L.DomUtil.create('div', 'info legend');
                 var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
                 div.innerHTML += '<h4>Legende</h4><br>' +
-                    '<img src=' + url + ' alt="legend" width="auto" height="auto">';
+                    '<img src=' + url + ' alt="legend">';
                 return div;
             };
             legend.addTo(map);
