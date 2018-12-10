@@ -39,12 +39,15 @@ var info = L.control({position: 'topleft'}); // control that shows state info on
 
 var zoom = L.control.zoom({ // Add zoom control
     position: 'topright'
-}); zoom.addTo(mymap);
+});
+zoom.addTo(mymap);
 
 L.control.scale().addTo(mymap); //Show scale meter on bottom left corner
 
 var sidebar = L.control.sidebar({ // Sidebar
-    container: 'sidebar' }); sidebar.addTo(mymap);
+    container: 'sidebar'
+});
+sidebar.addTo(mymap);
 
 // Change map style
 function changeMapStyle(name) {
@@ -116,7 +119,7 @@ function changeLayer(thisId) {
 // Add loading icon
 function addSpinner(layer) {
     layer.on('tileload', function () {
-        if(!runningSpinner) {
+        if (!runningSpinner) {
             spinnerMap.style.display = 'block';
             spinnerMap1.style.display = 'block';
             runningSpinner = true;
@@ -124,7 +127,7 @@ function addSpinner(layer) {
 
     });
     layer.on('load', function () {
-        if(!layer.isLoading()) {
+        if (!layer.isLoading()) {
             spinnerMap.style.display = 'none';
             spinnerMap1.style.display = 'none';
             runningSpinner = false;
