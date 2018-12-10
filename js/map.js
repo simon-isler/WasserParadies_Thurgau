@@ -32,14 +32,12 @@ var map = L.map('map', {
 
 // change map zoom according to screen width & height
 function resizeMap() {
-    if (width < 768 || height < 768) {
-        // set the zoom level to 10
+    if (width < 768) {
         map.setZoom(10);
     } else if (width > 1599 && height > 1300) {
         map.setZoom(12);
     }
     else {
-        // set the zoom level to 8
         map.setZoom(11);
     }
 }
