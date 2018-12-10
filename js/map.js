@@ -1,14 +1,14 @@
 /*
 *   map.js
 *
-*   Diese Datei erzeugt die Map und all ihre Funktionen (Legende, Layer, etc.).
+*   This file generates a leaflet map with several functions (legend, layer, sidebar, etc.).
 *
-*   Datum: 01.12.2018
-*   Autor: Simon Isler, Jan Oberhänsli
+*   Date: 01.12.2018
+*   Author: Simon Isler, Jan Oberhänsli
 *
 */
 
-// Globale Variablen
+// Global variables
 var mapname = 'mapbox.light';
 var dataLayerName = 'entwaesserungsgraben';
 var wmsLayer = '';
@@ -20,7 +20,7 @@ const bottomRightCorner = L.latLng(47.3730, 9.47);
 const maxBounds = L.latLngBounds(topLeftCorner, bottomRightCorner);
 
 // Init map
-var mymap = L.map('map', {
+var map = L.map('map', {
     maxBounds: maxBounds,
     maxZoom: 12,
     minZoom: 10,
@@ -28,7 +28,7 @@ var mymap = L.map('map', {
     attributionControl: false
 }).setView([47.54, 9.075], 11);
 
-// listen for screen resize events
+// change map zoom according to screen width
 window.addEventListener('resize', function(event){
     // get the width of the screen after the resize event
     var width = document.documentElement.clientWidth;
@@ -37,38 +37,37 @@ window.addEventListener('resize', function(event){
     // phones are less than 768 pixels wide
     if (width < 768) {
         // set the zoom level to 10
-        mymap.setZoom(10);
+        map.setZoom(10);
     } else if (width > 1599) {
-        mymap.setZoom(12);
+        map.setZoom(12);
     }
     else {
         // set the zoom level to 8
-        mymap.setZoom(11);
+        map.setZoom(11);
     }
 });
 
 // Map options
-mymap.scrollWheelZoom.disable(); // Handle zooming/scrolling
+map.scrollWheelZoom.disable(); // handle zooming/scrolling
 
-var zoom = L.control.zoom({ // Add zoom control
+var zoom = L.control.zoom({ // add zoom control
     position: 'topright'
-}); zoom.addTo(mymap);
+}); zoom.addTo(map);
 
-L.control.scale().addTo(mymap); //Show scale meter on bottom left corner
+L.control.scale().addTo(map); // show scale meter on bottom left corner
 
-var sidebar = L.control.sidebar({ // Sidebar
+var sidebar = L.control.sidebar({ // sidebar
     container: 'sidebar'
-}); sidebar.addTo(mymap);
+}); sidebar.addTo(map);
 
-var legend = L.control({position: 'bottomright'}); // legende
+var legend = L.control({position: 'bottomright'}); // legend
 
-// Change map style
+// change map style
 function changeMapStyle(name) {
     //Remove every layer on the map
-    if (maplayer !== '')
-        mymap.removeLayer(maplayer);
-    if (wmsLayer !== '')
-        mymap.removeLayer(wmsLayer);
+    if (wmsLayer !== '') {
+        map.removeLayer(wmsLayer);
+    }
 
     if (dataLayerName !== '') {
         //Add new layer to map
@@ -77,18 +76,19 @@ function changeMapStyle(name) {
             id: name,
             format: 'images/png',
             accessToken: 'pk.eyJ1IjoiamFub2JlMiIsImEiOiJjam00b3Vpa2wzZjNoM3BxbmJtams3Z2U0In0.ZOdhoX3gBfEJkGy0-w8Bwg'
-        }).addTo(mymap);
+        }).addTo(map);
 
         // show loading icon
         addSpinner(maplayer);
 
         //Add data layer onto the ground layer
-        if (wmsLayer !== '')
-            wmsLayer.addTo(mymap);
+        if (wmsLayer !== '') {
+            wmsLayer.addTo(map);
+        }
     }
 }
 
-// Event Listener for radio buttons to change the map style
+// event listener for radio buttons to change the map style
 document.getElementById("tgKarteStreets").addEventListener("click", function () {
     mapname = 'mapbox.streets';
     changeMapStyle(mapname);
@@ -102,22 +102,23 @@ document.getElementById("tgKarteSatellite").addEventListener("click", function (
     changeMapStyle(mapname);
 });
 
-// Change layer
+// change layer
 function changeLayer(thisId) {
     //remove data layer & legend
     if (wmsLayer !== '') {
-        mymap.removeLayer(wmsLayer);
-        legend.remove(mymap);
+        map.removeLayer(wmsLayer);
+        legend.remove(map);
     }
 
+    //check, if checkbox is checked or not, if it's checked then draw layer
     if (dataLayerName !== '') {
-        //check, if checkbox is checked or not, if it's checked then draw layer
         if (document.getElementById(thisId).checked) {
             dataLayerName = thisId;
         } else {
             dataLayerName = '';
         }
 
+        // add wms layer
         wmsLayer = L.tileLayer.wms('http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&', {
             version: '1.3.0',
             format: 'image/png',
@@ -126,12 +127,12 @@ function changeLayer(thisId) {
             opacity: 1,
             identify: false,
             layers: dataLayerName
-        }).addTo(mymap);
+        }).addTo(map);
 
         // show loading icon
         addSpinner(wmsLayer);
 
-        // Legende (if legend shows only one item, then do not display)
+        // show legend (if legend shows only one item, then do not display)
         if (dataLayerName === 'entwaesserungsgraben' || dataLayerName === 'fliessgewaesser' || dataLayerName === 'Stehendes_Gewaesser') { //Data with multiple items in legend
             legend.onAdd = function () {
                 // create legend
@@ -141,12 +142,12 @@ function changeLayer(thisId) {
                     '<img src=' + url + ' alt="legend" width="auto" height="auto">';
                 return div;
             };
-            legend.addTo(mymap);
+            legend.addTo(map);
         }
     }
 }
 
-// Add loading icon
+// add loading icon
 function addSpinner(layer) {
     var runningSpinner = false;
     const spinnerMap = document.getElementsByClassName('spinner')[0];
