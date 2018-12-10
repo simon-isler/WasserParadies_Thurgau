@@ -143,7 +143,7 @@ function changeLayer(thisId) {
                 var div = L.DomUtil.create('div', 'info legend');
                 var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
                 div.innerHTML += '<h4>Legende</h4><br>' +
-                    '<img src=' + url + ' alt="legend">';
+                    '<img src=' + url + ' alt="legend" class="legend">';
                 return div;
             };
             legend.addTo(map);
