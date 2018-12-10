@@ -69,8 +69,9 @@ var legend = L.control({position: 'bottomright'}); // legend
 // change map style
 function changeMapStyle(name) {
     //Remove every layer on the map
-    if (wmsLayer !== '') {
+    if (wmsLayer !== '' && maplayer !== '') {
         map.removeLayer(wmsLayer);
+        map.removeLayer(maplayer);
     }
 
     if (dataLayerName !== '') {
