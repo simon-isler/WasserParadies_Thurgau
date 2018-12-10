@@ -1,7 +1,7 @@
 /*
 *   map.js
 *
-*   Beschreibung
+*   Diese Datei erzeugt die Map und all ihre Funktionen (Legende, Layer, etc.).
 *
 *   Datum: 01.12.2018
 *   Autor: Simon Isler, Jan Oberhänsli
@@ -13,10 +13,6 @@ var mapname = 'mapbox.light';
 var dataLayerName = 'entwaesserungsgraben';
 var wmsLayer = '';
 var maplayer = '';
-var legend = L.control({position: 'bottomright'});
-var runningSpinner = false;
-const spinnerMap = document.getElementsByClassName('spinner')[0];
-const spinnerMap1 = document.getElementsByClassName('spinner')[1];
 
 //restrict view of map
 const topLeftCorner = L.latLng(47.7157, 8.6538);
@@ -54,19 +50,17 @@ window.addEventListener('resize', function(event){
 // Map options
 mymap.scrollWheelZoom.disable(); // Handle zooming/scrolling
 
-var info = L.control({position: 'topleft'}); // control that shows state info on hover
-
 var zoom = L.control.zoom({ // Add zoom control
     position: 'topright'
-});
-zoom.addTo(mymap);
+}); zoom.addTo(mymap);
 
 L.control.scale().addTo(mymap); //Show scale meter on bottom left corner
 
 var sidebar = L.control.sidebar({ // Sidebar
     container: 'sidebar'
-});
-sidebar.addTo(mymap);
+}); sidebar.addTo(mymap);
+
+var legend = L.control({position: 'bottomright'}); // legende
 
 // Change map style
 function changeMapStyle(name) {
@@ -85,28 +79,44 @@ function changeMapStyle(name) {
             accessToken: 'pk.eyJ1IjoiamFub2JlMiIsImEiOiJjam00b3Vpa2wzZjNoM3BxbmJtams3Z2U0In0.ZOdhoX3gBfEJkGy0-w8Bwg'
         }).addTo(mymap);
 
+        // show loading icon
         addSpinner(maplayer);
 
-        //Add data layer over ground layer
+        //Add data layer onto the ground layer
         if (wmsLayer !== '')
             wmsLayer.addTo(mymap);
     }
 }
 
+// Event Listener for radio buttons to change the map style
+document.getElementById("tgKarteStreets").addEventListener("click", function () {
+    mapname = 'mapbox.streets';
+    changeMapStyle(mapname);
+});
+document.getElementById("tgKarteLight").addEventListener("click", function () {
+    mapname = 'mapbox.light';
+    changeMapStyle(mapname);
+});
+document.getElementById("tgKarteSatellite").addEventListener("click", function () {
+    mapname = 'mapbox.satellite';
+    changeMapStyle(mapname);
+});
+
 // Change layer
 function changeLayer(thisId) {
     //remove data layer & legend
-    if (wmsLayer !== '')
+    if (wmsLayer !== '') {
         mymap.removeLayer(wmsLayer);
-    legend.remove(mymap);
+        legend.remove(mymap);
+    }
 
     if (dataLayerName !== '') {
-
         //check, if checkbox is checked or not, if it's checked then draw layer
-        if (document.getElementById(thisId).checked)
+        if (document.getElementById(thisId).checked) {
             dataLayerName = thisId;
-        else
+        } else {
             dataLayerName = '';
+        }
 
         wmsLayer = L.tileLayer.wms('http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&', {
             version: '1.3.0',
@@ -118,12 +128,13 @@ function changeLayer(thisId) {
             layers: dataLayerName
         }).addTo(mymap);
 
+        // show loading icon
         addSpinner(wmsLayer);
 
-        // Legende
-        //If legend shows only one item, then do not display
+        // Legende (if legend shows only one item, then do not display)
         if (dataLayerName === 'entwaesserungsgraben' || dataLayerName === 'fliessgewaesser' || dataLayerName === 'Stehendes_Gewaesser') { //Data with multiple items in legend
             legend.onAdd = function () {
+                // create legend
                 var div = L.DomUtil.create('div', 'info legend');
                 var url = 'http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=' + dataLayerName + '&format=image/png&STYLE=default';
                 div.innerHTML += '<h4>Legende</h4><br>' +
@@ -137,6 +148,10 @@ function changeLayer(thisId) {
 
 // Add loading icon
 function addSpinner(layer) {
+    var runningSpinner = false;
+    const spinnerMap = document.getElementsByClassName('spinner')[0];
+    const spinnerMap1 = document.getElementsByClassName('spinner')[1];
+
     layer.on('tileload', function () {
         if (!runningSpinner) {
             spinnerMap.style.display = 'block';
@@ -153,20 +168,6 @@ function addSpinner(layer) {
         }
     });
 }
-
-// Add Event Listener for radio buttons
-document.getElementById("tgKarteStreets").addEventListener("click", function () {
-    mapname = 'mapbox.streets';
-    changeMapStyle(mapname);
-});
-document.getElementById("tgKarteLight").addEventListener("click", function () {
-    mapname = 'mapbox.light';
-    changeMapStyle(mapname);
-});
-document.getElementById("tgKarteSatellite").addEventListener("click", function () {
-    mapname = 'mapbox.satellite';
-    changeMapStyle(mapname);
-});
 
 // generate map
 changeMapStyle(mapname);
