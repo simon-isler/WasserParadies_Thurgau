@@ -77,11 +77,10 @@ path .active {
 
 #map {
     width: 100%;
-    height: 80%;
+    height: 80vh;
 }
 
 .tg-horizont {
-    padding-top: 8%;
     padding-bottom: 63px !important;
     box-shadow: inset 0 -30px 0 #4ab1eb, inset 0px -37px 0px #00a4e8, inset 0px -44px 0px #72a536, inset 0px -56px 0px #adc427, inset 0px -63px 0px #ffec00;
 }
@@ -128,12 +127,8 @@ header {
 }
 
 .logo {
-    padding-top: 1%;
-    display: block;
     float: right;
     width: 12.5%;
-    height: auto;
-    margin-right: 6.034482758621%;
 }
 
 .legend {
@@ -150,4 +145,8 @@ header {
 
 .full {
     height: 100vh;
+}
+
+nav {
+    height: 10%;
 }
