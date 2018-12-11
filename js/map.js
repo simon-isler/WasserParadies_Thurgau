@@ -69,8 +69,7 @@ var legend = L.control({position: 'bottomright'}); // legend
 // change map style
 function changeMapStyle(name) {
     //Remove every layer on the map
-    if (wmsLayer !== '' && maplayer !== '') {
-        map.removeLayer(wmsLayer);
+    if (maplayer !== '') {
         map.removeLayer(maplayer);
     }
 
@@ -86,9 +85,9 @@ function changeMapStyle(name) {
         // show loading icon
         addSpinner(maplayer);
 
-        //Add data layer onto the ground layer
+        //Move wmslayer to front
         if (wmsLayer !== '') {
-            wmsLayer.addTo(map);
+            wmsLayer.bringToFront();
         }
     }
 }
