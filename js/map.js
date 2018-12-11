@@ -17,8 +17,8 @@ var width = document.documentElement.clientWidth;
 var height = document.documentElement.clientHeight;
 
 //restrict view of map
-const topLeftCorner = L.latLng(47.7157, 8.6538);
-const bottomRightCorner = L.latLng(47.3730, 9.47);
+const topLeftCorner = L.latLng(47.8157, 8.2538);
+const bottomRightCorner = L.latLng(47.2730, 9.77);
 const maxBounds = L.latLngBounds(topLeftCorner, bottomRightCorner);
 
 // Init map
