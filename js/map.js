@@ -68,26 +68,18 @@ sidebar.addTo(map);
 
 var legend = L.control({position: 'bottomright'}); // legend
 
-// function to check if WMS data is online
+// function to check if website is online
 function isSiteOnline(url, callback) {
-    // try to load favicon
-    var timer = setTimeout(function () {
-        // timeout after 5 seconds
-        callback(false);
-    }, 5000);
-
     var img = document.createElement("img");
+    img.src = url + "/favicon.ico";
+
     img.onload = function () {
-        clearTimeout(timer);
         callback(true);
     };
 
     img.onerror = function () {
-        clearTimeout(timer);
         callback(false);
     };
-
-    img.src = url + "/favicon.ico";
 }
 
 // change map style
@@ -125,7 +117,7 @@ function changeMapStyle(name) {
 
         // site is offline
         else {
-            alert("Die Map konnte nicht geladen werden!");
+            alert("Die Map konnte nicht geladen werden! Versuchen Sie die Seite neuzuladen!");
         }
     });
 }
@@ -183,7 +175,7 @@ function changeLayer(thisId) {
         }
         // data is offline
         else {
-            alert("Die WMS-Daten konnten nicht geladen werden!");
+            alert("Die WMS-Daten konnten nicht geladen werden! Versuchen Sie die Seite neuzuladen!");
         }
     });
 
