@@ -207,21 +207,21 @@
                     <p>Wählen Sie aus wie Ihre Karte aussehen soll!</p>
                     <hr>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radios" id="tgKarteStreets" value="option1">
+                        <input class="form-check-input" type="radio" name="radios" id="tgKarteStreets" value="option1" onclick="changeMapStyle('mapbox.streets')">
                         <label class="form-check-label" for="tgKarteStreets">
                             Strassenansicht
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radios" id="tgKarteLight" value="option2"
-                               checked>
+                               checked onclick="changeMapStyle('mapbox.light')">
                         <label class="form-check-label" for="tgKarteLight">
                             Light
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radios" id="tgKarteSatellite"
-                               value="option3">
+                               value="option3" onclick="changeMapStyle('mapbox.satellite')">
                         <label class="form-check-label" for="tgKarteSatellite">
                             Satellit
                         </label>

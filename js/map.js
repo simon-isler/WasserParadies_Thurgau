@@ -36,15 +36,15 @@ function resizeMap() {
         map.setZoom(10);
     } else if (width > 1599 && height > 1300) {
         map.setZoom(12);
-    }
-    else {
+    } else {
         map.setZoom(11);
     }
 }
+
 resizeMap();
 
 // change map zoom according to screen width & height if window gets smaller
-window.addEventListener('resize', function(){
+window.addEventListener('resize', function () {
     // get the width of the screen after the resize event
     width = document.documentElement.clientWidth;
     height = document.documentElement.clientHeight;
@@ -56,76 +56,78 @@ map.scrollWheelZoom.disable(); // handle zooming/scrolling
 
 var zoom = L.control.zoom({ // add zoom control
     position: 'topright'
-}); zoom.addTo(map);
+});
+zoom.addTo(map);
 
 L.control.scale().addTo(map); // show scale meter on bottom left corner
 
 var sidebar = L.control.sidebar({ // sidebar
     container: 'sidebar'
-}); sidebar.addTo(map);
+});
+sidebar.addTo(map);
 
 var legend = L.control({position: 'bottomright'}); // legend
 
-// change map style
-function changeMapStyle(name) {
-    //Remove every layer on the map
-    if (maplayer !== '') {
-        map.removeLayer(maplayer);
-    }
-
-    if (dataLayerName !== '') {
-        //Add new layer to map
-        maplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            id: name,
-            format: 'images/png',
-            accessToken: 'pk.eyJ1IjoiamFub2JlMiIsImEiOiJjam00b3Vpa2wzZjNoM3BxbmJtams3Z2U0In0.ZOdhoX3gBfEJkGy0-w8Bwg'
-        }).addTo(map);
-
-        // show loading icon
-        addSpinner(maplayer);
-
-        //Move wmslayer to front
-        if (wmsLayer !== '') {
-            wmsLayer.bringToFront();
-        }
-    }
-}
-
-// event listener for radio buttons to change the map style
-document.getElementById("tgKarteStreets").addEventListener("click", function () {
-    mapname = 'mapbox.streets';
-    changeMapStyle(mapname);
-});
-document.getElementById("tgKarteLight").addEventListener("click", function () {
-    mapname = 'mapbox.light';
-    changeMapStyle(mapname);
-});
-document.getElementById("tgKarteSatellite").addEventListener("click", function () {
-    mapname = 'mapbox.satellite';
-    changeMapStyle(mapname);
-});
-
 // function to check if WMS data is online
-function isSiteOnline(url,callback) {
+function isSiteOnline(url, callback) {
     // try to load favicon
-    var timer = setTimeout(function(){
+    var timer = setTimeout(function () {
         // timeout after 5 seconds
         callback(false);
-    },5000);
+    }, 5000);
 
     var img = document.createElement("img");
-    img.onload = function() {
+    img.onload = function () {
         clearTimeout(timer);
         callback(true);
     };
 
-    img.onerror = function() {
+    img.onerror = function () {
         clearTimeout(timer);
         callback(false);
     };
 
-    img.src = url+"/favicon.ico";
+    img.src = url + "/favicon.ico";
+}
+
+// change map style
+function changeMapStyle(name) {
+    // map API url
+    var mapUrl = "https://api.openstreetmap.org/";
+
+    // check if Site is online
+    isSiteOnline(mapUrl, function (found) {
+        // site is online
+        if (found) {
+            //Remove every layer on the map
+            if (maplayer !== '') {
+                map.removeLayer(maplayer);
+            }
+
+            if (dataLayerName !== '') {
+                //Add new layer to map
+                maplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    id: name,
+                    format: 'images/png',
+                    accessToken: 'pk.eyJ1IjoiamFub2JlMiIsImEiOiJjam00b3Vpa2wzZjNoM3BxbmJtams3Z2U0In0.ZOdhoX3gBfEJkGy0-w8Bwg'
+                }).addTo(map);
+
+                // show loading icon
+                addSpinner(maplayer);
+
+                //Move wmslayer to front
+                if (wmsLayer !== '') {
+                    wmsLayer.bringToFront();
+                }
+            }
+        }
+
+        // site is offline
+        else {
+            alert("Die Map konnte nicht geladen werden!");
+        }
+    });
 }
 
 // change layer
@@ -133,9 +135,10 @@ function changeLayer(thisId) {
     // WMS data URL
     var imgUrl = "https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=" + dataLayerName + "&CRS=EPSG%3A2056&STYLES=&WIDTH=650&HEIGHT=390&BBOX=2690000%2C1246000%2C2755000%2C1285000";
 
-    isSiteOnline(imgUrl,function(found){
+    // check if Site is online
+    isSiteOnline(imgUrl, function (found) {
         // site is online
-        if(found) {
+        if (found) {
             //remove data layer & legend
             if (wmsLayer !== '') {
                 map.removeLayer(wmsLayer);
