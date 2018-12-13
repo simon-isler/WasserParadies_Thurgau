@@ -131,9 +131,9 @@ function isSiteOnline(url,callback) {
 // change layer
 function changeLayer(thisId) {
     // WMS data URL
-    var dataUrl = "https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=" + dataLayerName + "&CRS=EPSG%3A2056&STYLES=&WIDTH=650&HEIGHT=390&BBOX=2690000%2C1246000%2C2755000%2C1285000";
+    var imgUrl = "https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=" + dataLayerName + "&CRS=EPSG%3A2056&STYLES=&WIDTH=650&HEIGHT=390&BBOX=2690000%2C1246000%2C2755000%2C1285000";
 
-    isSiteOnline(dataUrl,function(found){
+    isSiteOnline(imgUrl,function(found){
         // site is online
         if(found) {
             //remove data layer & legend
