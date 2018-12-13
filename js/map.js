@@ -24,8 +24,8 @@ const maxBounds = L.latLngBounds(topLeftCorner, bottomRightCorner);
 // Init map
 var map = L.map('map', {
     maxBounds: maxBounds,
-    maxZoom: 12,
-    minZoom: 10,
+    maxZoom: 14,
+    minZoom: 9,
     zoomControl: false,
     attributionControl: false
 }).setView([47.54, 9.075], 11);
