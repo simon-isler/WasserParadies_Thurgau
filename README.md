@@ -1,4 +1,4 @@
-3# WasserParadies_Thurgau
+# WasserParadies_Thurgau
 
 ## Author
 - Simon Isler
