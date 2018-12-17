@@ -26,7 +26,6 @@ var map = L.map('map', {
     maxBounds: maxBounds,
     maxZoom: 17,
     minZoom: 9,
-    zoomControl: false,
     attributionControl: false
 }).setView([47.54, 9.075], 11);
 
