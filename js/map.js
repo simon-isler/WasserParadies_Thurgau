@@ -26,6 +26,7 @@ var map = L.map('map', {
     maxBounds: maxBounds,
     maxZoom: 17,
     minZoom: 9,
+    zoomControl: false,
     attributionControl: false
 }).setView([47.54, 9.075], 11);
 
@@ -149,8 +150,6 @@ function changeLayer(id) {
                 format: 'image/png',
                 transparent: true,
                 crs: L.CRS.EPSG4326,
-                opacity: 1,
-                identify: false,
                 layers: dataLayerName
             }).addTo(map);
 
