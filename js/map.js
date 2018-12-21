@@ -145,10 +145,11 @@ function changeLayer(id) {
             }
 
             // add wms layer
-            wmsLayer = L.tileLayer.wms('http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&', {
+            wmsLayer = L.WMS.overlay('http://map.geo.tg.ch//proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&', {
                 version: '1.3.0',
                 format: 'image/png',
                 transparent: true,
+                opacity: 1.0,
                 crs: L.CRS.EPSG4326,
                 layers: dataLayerName
             }).addTo(map);
