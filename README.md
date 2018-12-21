@@ -1,5 +1,8 @@
 # WasserParadies_Thurgau
 
+## Demo
+https://ogd.simonisler.ch
+
 ## Author
 - Simon Isler
 - Jan Oberhänsli

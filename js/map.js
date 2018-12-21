@@ -10,7 +10,7 @@
 
 // global variables
 var mapname = 'mapbox.light';
-var dataLayerName = 'entwaesserungsgraben';
+var dataLayerName = '';
 var wmsLayer = '';
 var maplayer = '';
 var width = document.documentElement.clientWidth;
@@ -68,28 +68,25 @@ sidebar.addTo(map);
 
 var legend = L.control({position: 'bottomright'}); // add legend
 
-// function to check if website is online
-function isSiteOnline(url, callback) {
+// function to check whether given site is online
+function isSiteOnline(url, isOnline) {
+    // try to load favicon
     var img = document.createElement("img");
-    img.src = url + "/favicon.ico";
-
     img.onload = function () {
-        callback(true);
+        isOnline(true);
     };
 
     img.onerror = function () {
-        callback(false);
+        isOnline(false);
     };
+
+    img.src = url + "/favicon.ico";
 }
 
 // change map style
 function changeMapStyle(name) {
-    // map API url
-    var mapApi = "https://api.openstreetmap.org/";
-
-    // check if Site is online
-    isSiteOnline(mapApi, function (found) {
-        // site is online
+    // check if map api is online
+    isSiteOnline("https://api.openstreetmap.org/", function (found) {
         if (found) {
             //Remove previous layer on the map
             if (maplayer !== '') {
@@ -104,18 +101,13 @@ function changeMapStyle(name) {
                 accessToken: 'pk.eyJ1IjoiamFub2JlMiIsImEiOiJjam00b3Vpa2wzZjNoM3BxbmJtams3Z2U0In0.ZOdhoX3gBfEJkGy0-w8Bwg'
             }).addTo(map);
 
-            // show loading icon
-            addSpinner(maplayer);
-
             //Move wmslayer to front
             if (wmsLayer !== '') {
                 wmsLayer.bringToFront();
             }
-        }
-
-        // site is offline
-        else {
-            alert("Die Map konnte nicht geladen werden! Versuchen Sie die Seite neuzuladen!");
+        } else {
+            // site offline
+            alert("Die Map konnte nicht richtig geladen werden! Versuchen Sie die Seite neuzuladen!")
         }
     });
 }
@@ -128,16 +120,12 @@ function removeAll() {
 
 // change wms layer
 function changeLayer(id) {
-    // save id of radio button
-    dataLayerName = id;
-
-    // WMS data URL
-    var imgUrl = "https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=" + dataLayerName + "&CRS=EPSG%3A2056&STYLES=&WIDTH=650&HEIGHT=390&BBOX=2690000%2C1246000%2C2755000%2C1285000";
-
-    // check if Site is online
-    isSiteOnline(imgUrl, function (found) {
-        // site is online
+    // check if wms data is online
+    isSiteOnline('https://map.geo.tg.ch/proxy/geofy_chsdi3/gewaesserkataster_gewaesser-gewaesserlauf?access_key=YoW2syIQ4xe0ccJA&Service=WMS&Version=1.3.0&Request=GetCapabilities&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=entwaesserungsgraben&CRS=EPSG%3A2056&STYLES=&WIDTH=650&HEIGHT=390&BBOX=2690000%2C1246000%2C2755000%2C1285000', function (found) {
         if (found) {
+            // save id of radio button
+            dataLayerName = id;
+
             //remove previous data layer & legend
             if (wmsLayer !== '') {
                 map.removeLayer(wmsLayer);
@@ -154,9 +142,6 @@ function changeLayer(id) {
                 layers: dataLayerName
             }).addTo(map);
 
-            // show loading icon
-            addSpinner(wmsLayer);
-
             // show legend (if legend has only one item, then do not display)
             if (dataLayerName === 'entwaesserungsgraben' || dataLayerName === 'fliessgewaesser' || dataLayerName === 'Stehendes_Gewaesser') {
                 legend.onAdd = function () {
@@ -169,36 +154,9 @@ function changeLayer(id) {
                 };
                 legend.addTo(map);
             }
-        }
-        // data is offline
-        else {
-            alert("Die WMS-Daten konnten nicht geladen werden! Versuchen Sie die Seite neuzuladen!");
-        }
-    });
-}
-
-// loading icon
-function addSpinner(layer) {
-    var runningSpinner = false;
-    const spinnerMap = document.getElementsByClassName('spinner')[0];
-    const spinnerMap1 = document.getElementsByClassName('spinner')[1];
-
-    // data is loading
-    layer.on('tileload', function () {
-        if (!runningSpinner) {
-            spinnerMap.style.display = 'block';
-            spinnerMap1.style.display = 'block';
-            runningSpinner = true;
-        }
-
-    });
-
-    // no data is loading
-    layer.on('load', function () {
-        if (!layer.isLoading()) {
-            spinnerMap.style.display = 'none';
-            spinnerMap1.style.display = 'none';
-            runningSpinner = false;
+        } else {
+            // site offline
+            alert("Die WMS-Daten konnten nicht richtig geladen werden! Versuchen Sie die Seite neuzuladen!")
         }
     });
 }
