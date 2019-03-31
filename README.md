@@ -1,7 +1,7 @@
 # WasserParadies_Thurgau
 
 ## Demo
-https://ogd.simonisler.ch
+https://simonisler.ch/projects/ogd
 
 ## Author
 - Simon Isler
